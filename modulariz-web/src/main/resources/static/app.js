@@ -10,17 +10,28 @@
         }
     };
 
-    userController = {
-        el: "#userController",
+    accountController = {
+        el: "#accountController",
         data: {
-            users: [
-                {name: 'John Snow'},
-                {name: 'Mark so'}
-            ]
+            accounts: []
+        },
+        ready: function() {
+            this.fetchAccounts();
+        },
+        methods: {
+            fetchAccounts: function() {
+                this.$http
+                    .get('/accounts')
+                    .then(function (response) {
+                        this.$set('accounts', response.data)
+                    }, function(_) {
+                        this.$set('accounts', [{name:'Aucun compte ...'}]);
+                    });
+            }
         }
     };
 
     exports.app = new Vue(exchangeController);
-    exports.app = new Vue(userController);
+    exports.app = new Vue(accountController);
 })(window);
 

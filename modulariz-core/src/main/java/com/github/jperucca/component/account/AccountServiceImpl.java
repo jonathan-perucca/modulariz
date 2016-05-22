@@ -1,8 +1,10 @@
 package com.github.jperucca.component.account;
 
-import com.github.jperucca.component.account.model.User;
+import com.github.jperucca.component.account.model.Account;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 class AccountServiceImpl implements AccountService {
@@ -15,9 +17,14 @@ class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public User createUser(String name) {
+    public Account createAccount(String name) {
         return accountRepository.createUser(
-                User.builder().name(name).build()
+                Account.builder().name(name).build()
         );
+    }
+
+    @Override
+    public List<Account> fetchAccounts() {
+        return accountRepository.findAll();
     }
 }

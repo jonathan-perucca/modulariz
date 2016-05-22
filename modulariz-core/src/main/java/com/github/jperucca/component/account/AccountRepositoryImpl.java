@@ -1,6 +1,6 @@
 package com.github.jperucca.component.account;
 
-import com.github.jperucca.component.account.model.User;
+import com.github.jperucca.component.account.model.Account;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -10,12 +10,17 @@ import java.util.UUID;
 @Repository
 class AccountRepositoryImpl implements AccountRepository {
 
-    private List<User> users = new ArrayList<>();
+    private List<Account> accounts = new ArrayList<>();
 
     @Override
-    public User createUser(User user) {
-        user.setUuid(UUID.randomUUID());
-        users.add(user);
-        return user;
+    public Account createUser(Account account) {
+        account.setUuid(UUID.randomUUID());
+        accounts.add(account);
+        return account;
+    }
+
+    @Override
+    public List<Account> findAll() {
+        return new ArrayList<>(accounts);
     }
 }

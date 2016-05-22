@@ -7,7 +7,7 @@ import lombok.Setter;
 import java.util.UUID;
 
 @Setter @Getter @Builder
-public class User {
+public class Account {
     private UUID uuid;
     private String name;
 }

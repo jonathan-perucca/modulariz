@@ -1,7 +1,7 @@
 package com.github.jperucca;
 
 import com.github.jperucca.component.account.AccountService;
-import com.github.jperucca.component.account.model.User;
+import com.github.jperucca.component.account.model.Account;
 import com.github.jperucca.component.exchange.ExchangeService;
 import com.github.jperucca.component.exchange.model.Exchange;
 import org.springframework.beans.factory.InitializingBean;
@@ -26,10 +26,10 @@ public class ModularAppApplication {
 	@Bean
 	public InitializingBean start() {
 		return () -> {
-			final User john = accountService.createUser("John");
-			final User snow = accountService.createUser("Snow");
+			final Account john = accountService.createAccount("John Snow");
+			final Account mark = accountService.createAccount("Mark so");
 
-			Exchange exchange = exchangeService.startExchange(john.getUuid(), snow.getUuid());
+			Exchange exchange = exchangeService.startExchange(john.getUuid(), mark.getUuid());
 
 			System.out.println(exchange);
 
