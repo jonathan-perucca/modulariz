@@ -34,8 +34,8 @@
                         </tr>
                     </thead>
                     <tr v-for="exchange in exchanges">
-                        <td>{{ exchange.owner }}</td>
-                        <td>{{ exchange.receiver }}</td>
+                        <td>{{ exchange.owner.name }}</td>
+                        <td>{{ exchange.receiver.name }}</td>
                         <td>{{ exchange.state }}</td>
                     </tr>
                 </table>

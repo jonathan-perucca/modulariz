@@ -4,6 +4,7 @@ import com.github.jperucca.component.exchange.model.Exchange;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -36,5 +37,10 @@ class ExchangeServiceImpl implements ExchangeService {
         exchangeRepository.save(exchange.get());
 
         return exchange.get();
+    }
+
+    @Override
+    public List<Exchange> fetchExchanges() {
+        return exchangeRepository.findAll();
     }
 }

@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 class AccountServiceImpl implements AccountService {
@@ -26,5 +27,10 @@ class AccountServiceImpl implements AccountService {
     @Override
     public List<Account> fetchAccounts() {
         return accountRepository.findAll();
+    }
+
+    @Override
+    public Account getAccount(UUID accountUuid) {
+        return accountRepository.findOne(accountUuid).orElse(null);
     }
 }

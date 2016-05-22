@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Repository
@@ -22,5 +23,13 @@ class AccountRepositoryImpl implements AccountRepository {
     @Override
     public List<Account> findAll() {
         return new ArrayList<>(accounts);
+    }
+
+    @Override
+    public Optional<Account> findOne(UUID accountUuid) {
+        return accounts
+                .stream()
+                .filter(account -> accountUuid.equals(account.getUuid()))
+                .findFirst();
     }
 }

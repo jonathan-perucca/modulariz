@@ -3,10 +3,21 @@
     exchangeController = {
         el: '#exchangeController',
         data: {
-            exchanges: [
-                {state: 'PENDING', owner: 'John Snow', receiver: 'Mark so'},
-                {state: 'PENDING', owner: 'Mark so', receiver: 'John Snow'}
-            ]
+            exchanges: []
+        },
+        ready: function() {
+            this.fetchExchanges();
+        },
+        methods: {
+            fetchExchanges: function() {
+                this.$http
+                    .get("exchanges")
+                    .then(function(response) {
+                        this.$set('exchanges', response.data);
+                    }, function(_) {
+                        this.$set('exchanges', [{owner: "Aucun échange ..."}]);
+                    })
+            }
         }
     };
 
