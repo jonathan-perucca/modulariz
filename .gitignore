@@ -1,0 +1,7 @@
+target/
+.idea/
+.mvn/
+
+*.iml
+
+hs_err_pid*
