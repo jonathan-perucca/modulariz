@@ -34,9 +34,7 @@ class ExchangeServiceImpl implements ExchangeService {
 
         exchange.ifPresent(Exchange::pushState);
 
-        exchangeRepository.save(exchange.get());
-
-        return exchange.get();
+        return exchangeRepository.save(exchange.get());
     }
 
     @Override

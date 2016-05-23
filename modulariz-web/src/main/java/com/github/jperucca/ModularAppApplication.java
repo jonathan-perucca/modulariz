@@ -3,7 +3,6 @@ package com.github.jperucca;
 import com.github.jperucca.component.account.AccountService;
 import com.github.jperucca.component.account.model.Account;
 import com.github.jperucca.component.exchange.ExchangeService;
-import com.github.jperucca.component.exchange.model.Exchange;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -29,13 +28,7 @@ public class ModularAppApplication {
 			final Account john = accountService.createAccount("John Snow");
 			final Account mark = accountService.createAccount("Mark so");
 
-			Exchange exchange = exchangeService.startExchange(john.getUuid(), mark.getUuid());
-
-			System.out.println(exchange);
-
-			exchange = exchangeService.pushState(exchange.getUuid());
-
-			System.out.println(exchange);
+			exchangeService.startExchange(john.getUuid(), mark.getUuid());
 		};
 	}
 }

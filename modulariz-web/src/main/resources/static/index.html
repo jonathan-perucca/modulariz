@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Modulariz</title>
@@ -36,7 +36,7 @@
                     <tr v-for="exchange in exchanges">
                         <td>{{ exchange.owner.name }}</td>
                         <td>{{ exchange.receiver.name }}</td>
-                        <td>{{ exchange.state }}</td>
+                        <td><button v-on:click="pushState(exchange)">{{ exchange.state }}</button></td>
                     </tr>
                 </table>
             </div>

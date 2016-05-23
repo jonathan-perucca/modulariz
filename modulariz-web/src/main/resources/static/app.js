@@ -11,12 +11,19 @@
         methods: {
             fetchExchanges: function() {
                 this.$http
-                    .get("exchanges")
+                    .get("/exchanges")
                     .then(function(response) {
                         this.$set('exchanges', response.data);
                     }, function(_) {
                         this.$set('exchanges', [{owner: "Aucun échange ..."}]);
                     })
+            },
+            pushState: function(exchange) {
+                var exchanges = this.$get('exchanges');
+                this.$http.post("/exchanges", exchange, function(response) {
+                    exchanges.$remove(exchange);
+                    exchanges.push(response);
+                });
             }
         }
     };
