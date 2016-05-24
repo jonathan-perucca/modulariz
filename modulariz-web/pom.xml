@@ -16,6 +16,7 @@
     <properties>
         <bootstrap.version>3.3.6</bootstrap.version>
         <vue.version>1.0.21</vue.version>
+        <rest-assured.version>2.9.0</rest-assured.version>
     </properties>
 
     <dependencies>
@@ -28,6 +29,13 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.jayway.restassured</groupId>
+            <artifactId>rest-assured</artifactId>
+            <version>${rest-assured.version}</version>
+            <scope>test</scope>
         </dependency>
 
         <dependency>

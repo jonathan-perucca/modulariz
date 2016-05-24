@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Profile;
 
 @SpringBootApplication
 public class ModularAppApplication {
@@ -23,6 +24,7 @@ public class ModularAppApplication {
 	public ExchangeService exchangeService;
 
 	@Bean
+	@Profile("dev")
 	public InitializingBean start() {
 		return () -> {
 			final Account john = accountService.createAccount("John Snow");
