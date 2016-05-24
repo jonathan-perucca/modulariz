@@ -11,12 +11,13 @@ import org.springframework.boot.test.WebIntegrationTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.UUID;
 
 import static com.jayway.restassured.RestAssured.get;
+import static java.util.Arrays.asList;
 import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
+import static org.hamcrest.core.Is.is;
+import static org.hamcrest.core.IsNull.notNullValue;
 import static org.mockito.Mockito.when;
 
 @ActiveProfiles("integration")
@@ -30,17 +31,21 @@ public class AccountControllerTest {
 
     @Autowired
     AccountService accountService;
-    UUID uuidFirst = UUID.randomUUID();
-    UUID uuidSecond = UUID.randomUUID();
 
     @Test
     public void should_fetch_accounts() {
-        List<Account> accounts = Arrays.asList(
-                Account.builder().uuid(uuidFirst).name("first").build(),
-                Account.builder().uuid(uuidSecond).name("second").build()
-        );
-        when(accountService.fetchAccounts()).thenReturn(accounts);
+        Account first = Account.builder().uuid(UUID.randomUUID()).name("first").build();
+        Account second = Account.builder().uuid(UUID.randomUUID()).name("second").build();
+        when(accountService.fetchAccounts()).thenReturn(asList(first, second));
 
-        get("/accounts").then().log().all().statusCode(200).body("$", hasSize(2));
+        get("/accounts")
+            .then().statusCode(200)
+            .body("$", hasSize(2))
+            .body("[0]", notNullValue())
+            .body("[0].uuid", is(first.getUuid().toString()))
+            .body("[0].name", is(first.getName()))
+            .body("[1]", notNullValue())
+            .body("[1].uuid", is(second.getUuid().toString()))
+            .body("[1].name", is(second.getName()));
     }
 }
