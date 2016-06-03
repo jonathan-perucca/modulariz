@@ -16,8 +16,4 @@ class ExchangeDTO {
     private State state;
     private Account owner;
     private Account receiver;
-
-    public void setState(State state) {
-        this.state = state;
-    }
 }
